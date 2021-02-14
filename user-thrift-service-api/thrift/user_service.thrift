@@ -8,7 +8,7 @@ struct UserInfo {
     5:string mobile,
     6:string email,
     7:string intro,
-    8:string stars
+    8:i32 stars
 }
 service UserService {
 

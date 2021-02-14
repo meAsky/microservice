@@ -36,35 +36,35 @@ public abstract class LoginFilter implements Filter {
         HttpServletResponse response= (HttpServletResponse) servletResponse;
 
         String token = request.getParameter("token");
-        if(StringUtils.isBlank(token)){
-            Cookie[] coolies=request.getCookies();
-            if(coolies!=null){
+        if(StringUtils.isBlank(token)) {
+            Cookie[] coolies = request.getCookies();
+            if (coolies != null) {
                 for (Cookie cooly : coolies) {
-                    if(cooly.getName().equals("token")){
-                        token= cooly.getValue();
+                    if (cooly.getName().equals("token")) {
+                        token = cooly.getValue();
                     }
                 }
             }
-            UserDTO userDTO=null;
-            if(StringUtils.isNotBlank(token)){
-                userDTO=cache.getIfPresent(token);
-                if(userDTO==null) {
-                    userDTO = requestUserInfo(token);
-                    if(userDTO!=null){
-                        cache.put(token,userDTO);
-                    }
-                }
-            }
-            if(userDTO==null){
-                response.sendRedirect("http://127.0.0.1:8082/user/login");
-                return;
-            }
-
-
-            login(request,response,userDTO);
-
-            filterChain.doFilter(request,response);
         }
+        UserDTO userDTO=null;
+        if(StringUtils.isNotBlank(token)){
+            userDTO=cache.getIfPresent(token);
+            if(userDTO==null) {
+                userDTO = requestUserInfo(token);
+                if(userDTO!=null){
+                    cache.put(token,userDTO);
+                }
+            }
+        }
+        if(userDTO==null){
+            response.sendRedirect("http://www.contains.com:8080/user/login");
+            return;
+        }
+
+
+        login(request,response,userDTO);
+
+        filterChain.doFilter(request,response);
     }
 
     protected abstract void login(HttpServletRequest request, HttpServletResponse response, UserDTO userDTO);

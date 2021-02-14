@@ -18,7 +18,7 @@ public class UserInfo implements org.apache.thrift.TBase<UserInfo, UserInfo._Fie
   private static final org.apache.thrift.protocol.TField MOBILE_FIELD_DESC = new org.apache.thrift.protocol.TField("mobile", org.apache.thrift.protocol.TType.STRING, (short)5);
   private static final org.apache.thrift.protocol.TField EMAIL_FIELD_DESC = new org.apache.thrift.protocol.TField("email", org.apache.thrift.protocol.TType.STRING, (short)6);
   private static final org.apache.thrift.protocol.TField INTRO_FIELD_DESC = new org.apache.thrift.protocol.TField("intro", org.apache.thrift.protocol.TType.STRING, (short)7);
-  private static final org.apache.thrift.protocol.TField STARS_FIELD_DESC = new org.apache.thrift.protocol.TField("stars", org.apache.thrift.protocol.TType.STRING, (short)8);
+  private static final org.apache.thrift.protocol.TField STARS_FIELD_DESC = new org.apache.thrift.protocol.TField("stars", org.apache.thrift.protocol.TType.I32, (short)8);
 
   private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new UserInfoStandardSchemeFactory();
   private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new UserInfoTupleSchemeFactory();
@@ -30,7 +30,7 @@ public class UserInfo implements org.apache.thrift.TBase<UserInfo, UserInfo._Fie
   public java.lang.String mobile; // required
   public java.lang.String email; // required
   public java.lang.String intro; // required
-  public java.lang.String stars; // required
+  public int stars; // required
 
   /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
   public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -113,6 +113,7 @@ public class UserInfo implements org.apache.thrift.TBase<UserInfo, UserInfo._Fie
 
   // isset id assignments
   private static final int __ID_ISSET_ID = 0;
+  private static final int __STARS_ISSET_ID = 1;
   private byte __isset_bitfield = 0;
   public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
   static {
@@ -132,7 +133,7 @@ public class UserInfo implements org.apache.thrift.TBase<UserInfo, UserInfo._Fie
     tmpMap.put(_Fields.INTRO, new org.apache.thrift.meta_data.FieldMetaData("intro", org.apache.thrift.TFieldRequirementType.DEFAULT, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     tmpMap.put(_Fields.STARS, new org.apache.thrift.meta_data.FieldMetaData("stars", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32)));
     metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
     org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(UserInfo.class, metaDataMap);
   }
@@ -148,7 +149,7 @@ public class UserInfo implements org.apache.thrift.TBase<UserInfo, UserInfo._Fie
     java.lang.String mobile,
     java.lang.String email,
     java.lang.String intro,
-    java.lang.String stars)
+    int stars)
   {
     this();
     this.id = id;
@@ -160,6 +161,7 @@ public class UserInfo implements org.apache.thrift.TBase<UserInfo, UserInfo._Fie
     this.email = email;
     this.intro = intro;
     this.stars = stars;
+    setStarsIsSet(true);
   }
 
   /**
@@ -186,9 +188,7 @@ public class UserInfo implements org.apache.thrift.TBase<UserInfo, UserInfo._Fie
     if (other.isSetIntro()) {
       this.intro = other.intro;
     }
-    if (other.isSetStars()) {
-      this.stars = other.stars;
-    }
+    this.stars = other.stars;
   }
 
   public UserInfo deepCopy() {
@@ -205,7 +205,8 @@ public class UserInfo implements org.apache.thrift.TBase<UserInfo, UserInfo._Fie
     this.mobile = null;
     this.email = null;
     this.intro = null;
-    this.stars = null;
+    setStarsIsSet(false);
+    this.stars = 0;
   }
 
   public int getId() {
@@ -375,28 +376,27 @@ public class UserInfo implements org.apache.thrift.TBase<UserInfo, UserInfo._Fie
     }
   }
 
-  public java.lang.String getStars() {
+  public int getStars() {
     return this.stars;
   }
 
-  public UserInfo setStars(java.lang.String stars) {
+  public UserInfo setStars(int stars) {
     this.stars = stars;
+    setStarsIsSet(true);
     return this;
   }
 
   public void unsetStars() {
-    this.stars = null;
+    __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __STARS_ISSET_ID);
   }
 
   /** Returns true if field stars is set (has been assigned a value) and false otherwise */
   public boolean isSetStars() {
-    return this.stars != null;
+    return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __STARS_ISSET_ID);
   }
 
   public void setStarsIsSet(boolean value) {
-    if (!value) {
-      this.stars = null;
-    }
+    __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __STARS_ISSET_ID, value);
   }
 
   public void setFieldValue(_Fields field, java.lang.Object value) {
@@ -461,7 +461,7 @@ public class UserInfo implements org.apache.thrift.TBase<UserInfo, UserInfo._Fie
       if (value == null) {
         unsetStars();
       } else {
-        setStars((java.lang.String)value);
+        setStars((java.lang.Integer)value);
       }
       break;
 
@@ -603,12 +603,12 @@ public class UserInfo implements org.apache.thrift.TBase<UserInfo, UserInfo._Fie
         return false;
     }
 
-    boolean this_present_stars = true && this.isSetStars();
-    boolean that_present_stars = true && that.isSetStars();
+    boolean this_present_stars = true;
+    boolean that_present_stars = true;
     if (this_present_stars || that_present_stars) {
       if (!(this_present_stars && that_present_stars))
         return false;
-      if (!this.stars.equals(that.stars))
+      if (this.stars != that.stars)
         return false;
     }
 
@@ -645,9 +645,7 @@ public class UserInfo implements org.apache.thrift.TBase<UserInfo, UserInfo._Fie
     if (isSetIntro())
       hashCode = hashCode * 8191 + intro.hashCode();
 
-    hashCode = hashCode * 8191 + ((isSetStars()) ? 131071 : 524287);
-    if (isSetStars())
-      hashCode = hashCode * 8191 + stars.hashCode();
+    hashCode = hashCode * 8191 + stars;
 
     return hashCode;
   }
@@ -813,11 +811,7 @@ public class UserInfo implements org.apache.thrift.TBase<UserInfo, UserInfo._Fie
     first = false;
     if (!first) sb.append(", ");
     sb.append("stars:");
-    if (this.stars == null) {
-      sb.append("null");
-    } else {
-      sb.append(this.stars);
-    }
+    sb.append(this.stars);
     first = false;
     sb.append(")");
     return sb.toString();
@@ -921,8 +915,8 @@ public class UserInfo implements org.apache.thrift.TBase<UserInfo, UserInfo._Fie
             }
             break;
           case 8: // STARS
-            if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
-              struct.stars = iprot.readString();
+            if (schemeField.type == org.apache.thrift.protocol.TType.I32) {
+              struct.stars = iprot.readI32();
               struct.setStarsIsSet(true);
             } else { 
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
@@ -976,11 +970,9 @@ public class UserInfo implements org.apache.thrift.TBase<UserInfo, UserInfo._Fie
         oprot.writeString(struct.intro);
         oprot.writeFieldEnd();
       }
-      if (struct.stars != null) {
-        oprot.writeFieldBegin(STARS_FIELD_DESC);
-        oprot.writeString(struct.stars);
-        oprot.writeFieldEnd();
-      }
+      oprot.writeFieldBegin(STARS_FIELD_DESC);
+      oprot.writeI32(struct.stars);
+      oprot.writeFieldEnd();
       oprot.writeFieldStop();
       oprot.writeStructEnd();
     }
@@ -1046,7 +1038,7 @@ public class UserInfo implements org.apache.thrift.TBase<UserInfo, UserInfo._Fie
         oprot.writeString(struct.intro);
       }
       if (struct.isSetStars()) {
-        oprot.writeString(struct.stars);
+        oprot.writeI32(struct.stars);
       }
     }
 
@@ -1083,7 +1075,7 @@ public class UserInfo implements org.apache.thrift.TBase<UserInfo, UserInfo._Fie
         struct.setIntroIsSet(true);
       }
       if (incoming.get(7)) {
-        struct.stars = iprot.readString();
+        struct.stars = iprot.readI32();
         struct.setStarsIsSet(true);
       }
     }
