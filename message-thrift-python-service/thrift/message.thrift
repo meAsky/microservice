@@ -1,5 +1,5 @@
 namespace java com.contains.thrift.message
-namespace py messsage.api
+namespace py message.api
 
 service MessageService {
     bool sendMobileMessage(1:string mobile, 2:string message);

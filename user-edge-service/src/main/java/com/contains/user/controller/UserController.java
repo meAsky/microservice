@@ -11,14 +11,10 @@ import org.apache.thrift.TException;
 import org.apache.tomcat.util.buf.HexUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import sun.util.locale.provider.LocaleServiceProviderPool;
 
-import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Random;
 
 /**
@@ -35,7 +31,7 @@ public class UserController {
 
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     public String login(){
-        return "/login";
+        return "login";
     }
 
     @RequestMapping(value = "login" ,method = RequestMethod.POST)
@@ -51,9 +47,11 @@ public class UserController {
             return Response.USERNAME_PASSWORD_INVALID;
         }
         if(userInfo == null){
+            System.out.println("数据库未查到userInfo");
             return Response.USERNAME_PASSWORD_INVALID;
         }
         if(!userInfo.getPassword().equalsIgnoreCase(md5(password))){
+            System.out.println("密码不符");
             return Response.USERNAME_PASSWORD_INVALID;
         }
         //2.生成token
