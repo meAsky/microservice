@@ -1,4 +1,4 @@
-FROM python-base:latest
+FROM hub.contains.com/micro-service/python-base:latest
 MAINTAINER xxx xxx@contains.com
 
 ENV PYTHONPATH /

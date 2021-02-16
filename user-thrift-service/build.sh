@@ -2,4 +2,6 @@
 
 mvn package
 
-docker build -t user-service:latest .
+docker build -t hub.contains.com/micro-service/user-service:latest .
+
+docker push hub.contains.com/micro-service/user-service:latest

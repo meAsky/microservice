@@ -1,4 +1,4 @@
-FROM python:3.6
+FROM hub.contains.com/micro-service/python:3.6
 MAINTAINER xxx xxx@contains.com
 
 RUN pip install thrift

@@ -1,4 +1,4 @@
-FROM openjdk:8-jre
+FROM hub.contains.com/micro-service/openjdk:8-jre
 MAINTAINER xxx xxx@contains.com
 
 COPY target/course-dubbo-service-1.0-SNAPSHOT.jar /course-service.jar
